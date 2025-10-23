@@ -46,17 +46,8 @@ class ChatAgent:
             if not GEMINI_API_KEY:
                 raise RuntimeError("GEMINI_API_KEY not set in environment variables")
             
-            genai.configure(api_key=GEMINI_API_KEY)
             self.model = model or GEMINI_MODEL
-            self.client = genai.GenerativeModel(
-                model_name=self.model,
-                generation_config={
-                    "temperature": 0.7,
-                    "top_p": 0.95,
-                    "top_k": 40,
-                    "max_output_tokens": 2048,
-                }
-            )
+            self.client = genai.Client()
             print(f"✅ Initialized Google Gemini: {self.model}")
         
         elif self.provider == "openai":
@@ -305,7 +296,7 @@ class ChatAgent:
                 conversation_text = f"{function_instructions}\n\n{conversation_text}"
             
             # Call Gemini
-            response = self.client.generate_content(conversation_text)
+            response = self.client.models.generate_content(contents=conversation_text, model=self.model)
             
             if not response.text:
                 return {

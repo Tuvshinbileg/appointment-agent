@@ -35,7 +35,7 @@ OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", None)  # For custom OpenAI-compat
 
 # Google Gemini Configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")  # or gemini-1.5-pro
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")  # or gemini-1.5-pro
 
 # Legacy Ollama (local only - not recommended for production)
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3")
